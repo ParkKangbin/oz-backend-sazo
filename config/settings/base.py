@@ -79,9 +79,9 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'oz_backend_sazo',        # ← 본인이 만든 DB 이름
+        'NAME': 'sazo_db',        # ← 본인이 만든 DB 이름
         'USER': 'postgres',       # ← PostgreSQL 접속 유저
-        'PASSWORD': 'willy0317',   # ← 그 유저의 비번
+        'PASSWORD': '1234',   # ← 그 유저의 비번
         'HOST': 'localhost',
         'PORT': '5432',
     }
