@@ -37,10 +37,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "users",
-    "bank_accounts",
-    "transactions",
-    "filters",
+    "apps.users",
+    "apps.accounts",
+    "apps.transactions",
 ]
 
 MIDDLEWARE = [
@@ -88,6 +87,7 @@ DATABASES = {
         "PORT": os.environ.get("POSTGRES_PORT", "5432"),
     }
 }
+
 
 
 # Password validation
