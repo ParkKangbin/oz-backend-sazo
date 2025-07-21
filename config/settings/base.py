@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     "apps.transactions",
 ]
 
+AUTH_USER_MODEL = 'users.CustomUser' # 커스텀 유저 모델임 
+
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
