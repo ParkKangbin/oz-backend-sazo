@@ -77,6 +77,12 @@ WSGI_APPLICATION = "config.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 import os
+from pathlib import Path
+from dotenv import load_dotenv 
+
+load_dotenv(dotenv_path=Path(__file__).resolve().parent.parent.parent/".env")
+
+print("dotenv file exists?:", Path(__file__).resolve().parent.parent.parent.joinpath(".env").exists())
 
 print("ENV DEBUG:", os.environ.get("POSTGRES_DB"))
 DATABASES = {
