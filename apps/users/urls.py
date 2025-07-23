@@ -14,3 +14,12 @@ urlpatterns = [
     path("userview/", UserInfoAPIView.as_view(), name="user-view"),
     path("userupdate/", UserUpdateAPIView.as_view(), name="user-update"),
 ]
+
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView, # 토큰 다시받기 
+)
+urlpatterns = [
+    path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+]
