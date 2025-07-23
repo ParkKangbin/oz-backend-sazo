@@ -1,9 +1,12 @@
 from rest_framework.views import APIView
-from apps.users.serializers import RegisterSerializer
+from apps.users.serializers import RegisterSerializer, UserSerializer
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth import authenticate
+
+
 class UserSignupAPIView(APIView):
     serializer_class = RegisterSerializer 
 
@@ -14,8 +17,8 @@ class UserSignupAPIView(APIView):
         serializer.save()
 
         return Response(status=status.HTTP_201_CREATED)
-    
-    # 
+
+
 class CookieLoginView(APIView):
     def post(self, request):
         email = request.data.get("email")
@@ -42,8 +45,7 @@ class CookieLoginView(APIView):
             return res
 
         return Response({"message": "이메일이나 비밀번호가 틀렸지롱?ㅋ."}, status=status.HTTP_401_UNAUTHORIZED)
-    
-from rest_framework.permissions import IsAuthenticated
+
 
 class CookieLogoutView(APIView):
     def post(self, request):
@@ -64,3 +66,28 @@ class CookieLogoutView(APIView):
         return response
     
     
+class UserInfoAPIView(APIView):
+    serializer_class = UserSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        serealizer = UserSerializer(request.user)
+        return Response(serealizer.data)
+
+
+class UserUpdateAPIView(APIView):
+    serializer_class = UserSerializer
+    permission_classes = [IsAuthenticated]
+    
+    def put(self, request):
+        user = request.user
+        serializer = UserSerializer(user, data=request.data)
+        
+        if serializer.is_valid():
+            serializer.save()
+            return Response({"message": "회원정보 수정 완료!"}, status=status.HTTP_200_OK)
+        
+    def delete(self, request):
+        user = request.user
+        user.delete()
+        return Response({"message": "Deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
