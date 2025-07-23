@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -149,7 +149,7 @@ REST_FRAMEWORK = {
 
 from datetime import timedelta
 
-SIMPLE_JWT = {
+SIMPLE_JWT = { # 토큰에 대한 설정값 
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),  # 기본: 5분 → 60분
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),     # 기본: 1일 → 7일
     "ROTATE_REFRESH_TOKENS": False, # True면 리프레시 토큰을 재발급할 때마다 새 토큰으로 교체함
