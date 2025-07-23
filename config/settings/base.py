@@ -147,3 +147,13 @@ REST_FRAMEWORK = {
     ),   # simplejwt 
 }
 
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),  # 기본: 5분 → 60분
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),     # 기본: 1일 → 7일
+    "ROTATE_REFRESH_TOKENS": False, # True면 리프레시 토큰을 재발급할 때마다 새 토큰으로 교체함
+    "BLACKLIST_AFTER_ROTATION": True,# 토큰을 교체하고 나면 이전 리프레시 토큰은 블랙리스트 처리함
+    "AUTH_HEADER_TYPES": ("Bearer",), # Authorization 헤더에 붙는 접두사 → Bearer <토큰> 
+    # postman 임 ㅇㅇ 
+    }
